@@ -137,7 +137,7 @@ export default function Home() {
           <input
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder="Your name (optional — shown if you're first)"
+            placeholder="Your name (optional, shown if you are first)"
             className="flex-1 bg-panel border border-line rounded-md px-4 py-3 text-sm text-paper placeholder:text-mist focus:outline-none focus:border-teal"
             maxLength={40}
           />
@@ -146,7 +146,7 @@ export default function Home() {
             disabled={!canSubmit}
             className="bg-gold text-void font-semibold rounded-md px-6 py-3 text-sm disabled:opacity-30 disabled:cursor-not-allowed hover:brightness-110 transition"
           >
-            {submitting ? "Checking…" : "Submit coordinate"}
+            {submitting ? "Checking..." : "Submit coordinate"}
           </button>
         </div>
 
@@ -160,7 +160,7 @@ export default function Home() {
             href="/stats"
             className="text-xs text-mist hover:text-teal font-mono tracking-wide"
           >
-            view the field report →
+            view the field report -&gt;
           </a>
         </div>
       </div>
