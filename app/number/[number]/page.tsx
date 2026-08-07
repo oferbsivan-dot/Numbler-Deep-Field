@@ -13,6 +13,16 @@ function formatDate(iso: string) {
   });
 }
 
+function formatDateTime(iso: string) {
+  return new Date(iso).toLocaleString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+  });
+}
+
 // Where this number falls along the full 0 - 10^20 line, as a percentage,
 // purely for the visual bar below. Approximate is fine here — this is
 // illustrative, not the source of truth (the database stores the exact
@@ -44,6 +54,13 @@ export default async function NumberPage({
   if (error || !data) {
     notFound();
   }
+
+  const { data: history } = await supabase
+    .from("selections")
+    .select("claimant_name, selected_at")
+    .eq("number", number)
+    .order("selected_at", { ascending: false })
+    .limit(50);
 
   const justClaimed = searchParams.first === "1";
   const pct = positionPercent(number);
@@ -103,11 +120,34 @@ export default async function NumberPage({
           </div>
         </div>
 
-        <p className="text-sm text-mist leading-relaxed">
+        <p className="text-sm text-mist leading-relaxed mb-10">
           There are 100,000,000,000,000,000,000 possible 20-digit
           coordinates. This is one of the vanishingly few that a human has
           actually visited.
         </p>
+
+        {history && history.length > 0 && (
+          <div>
+            <p className="text-xs text-mist mb-3 font-mono tracking-wide">
+              SELECTION HISTORY {history.length >= 50 ? "(most recent 50)" : ""}
+            </p>
+            <div className="bg-panel border border-line rounded-lg divide-y divide-line">
+              {history.map((h, i) => (
+                <div
+                  key={i}
+                  className="flex items-center justify-between px-4 py-3"
+                >
+                  <span className="text-sm text-paper">
+                    {h.claimant_name}
+                  </span>
+                  <span className="text-xs text-mist font-mono">
+                    {formatDateTime(h.selected_at)}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </main>
   );
