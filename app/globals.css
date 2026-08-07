@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  background: #0a0e1a;
+}
+
+body {
+  min-height: 100vh;
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, rgba(232, 234, 242, 0.35), transparent),
+    radial-gradient(1px 1px at 80% 15%, rgba(232, 234, 242, 0.25), transparent),
+    radial-gradient(1px 1px at 60% 60%, rgba(232, 234, 242, 0.3), transparent),
+    radial-gradient(1px 1px at 30% 80%, rgba(232, 234, 242, 0.2), transparent),
+    radial-gradient(1px 1px at 90% 70%, rgba(232, 234, 242, 0.25), transparent),
+    radial-gradient(1px 1px at 45% 35%, rgba(232, 234, 242, 0.2), transparent),
+    radial-gradient(1px 1px at 15% 55%, rgba(232, 234, 242, 0.15), transparent);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .digit-cell {
+    transition: border-color 150ms ease, transform 150ms ease;
+  }
+}
+
+.digit-cell:focus {
+  outline: none;
+  border-color: #f2b705;
+  transform: translateY(-1px);
+}
