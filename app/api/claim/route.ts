@@ -35,5 +35,20 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  return NextResponse.json(data?.[0] ?? null);
+  const row = data?.[0];
+  if (!row) {
+    return NextResponse.json(
+      { error: "Something went wrong saving that number." },
+      { status: 500 }
+    );
+  }
+
+  return NextResponse.json({
+    number: row.out_number,
+    first_claimant: row.out_first_claimant,
+    first_seen_at: row.out_first_seen_at,
+    selection_count: row.out_selection_count,
+    is_first: row.out_is_first,
+    pattern_label: row.out_pattern_label,
+  });
 }
