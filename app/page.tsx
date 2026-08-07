@@ -149,12 +149,21 @@ export default function Home() {
             {submitting ? "Checking…" : "Submit coordinate"}
           </button>
         </div>
+<p className="text-xs text-mist font-mono">
+  {filledCount}/20 digits entered
+  {error && <span className="text-red-400 ml-3">{error}</span>}
+</p>
 
-        <p className="text-xs text-mist font-mono">
-          {filledCount}/20 digits entered
-          {error && <span className="text-red-400 ml-3">{error}</span>}
-        </p>
-      </div>
-    </main>
+<div className="mt-10 text-center">
+  
+    href="/stats"
+    className="text-xs text-mist hover:text-teal font-mono tracking-wide"
+  >
+    view the field report →
+  </a>
+</div>
+</div>
+</main>
+        
   );
 }
