@@ -156,12 +156,12 @@ export default function Home() {
         </p>
 
         <div className="mt-10 text-center">
-          
-            href="/stats"
+          <button
+            onClick={() => router.push("/stats")}
             className="text-xs text-mist hover:text-teal font-mono tracking-wide"
           >
             view the field report -&gt;
-          </a>
+          </button>
         </div>
       </div>
     </main>
